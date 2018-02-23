@@ -1,0 +1,121 @@
+<style>
+    thead>tr>th {
+    cursor: -webkit-grabbing;
+}
+</style>
+
+
+<div class="gene-ham-icon" *ngIf="showIcon" tourAnchor="start.tour">
+    <button class="" md-mini-fab color="primary" md-card-icon (click)="ToggleFilterSection()">
+       
+    </button>
+</div>
+<!--<div class="panel-heading">
+    <h4 class="panel-title">
+        <i class="fa fa-filter"></i>&nbsp;<%= Lang.TransA("Filter") %>
+        <span class="pull-right" id="tblHideSearch" runat="server" visible="false">-->
+            <!-- <a onclick="document.getElementById('tblSearch').style.display = 'block'; document.getElementById('<%= tblHideSearch.ClientID %>').style.display = 'none';" href="javascript: void(0);" title="<%= Lang.TransA("Expand filter") %>">
+                 <i class="fa fa-expand"></i>
+             </a>-->
+            <!--<a data-toggle="collapse" data-parent=".panel-filter" href="#collapseFilter" title="<%= Lang.TransA(" Expand/Collapse Filter") %>"><i class="fa fa-expand"></i></a>
+        </span>
+    </h4>
+</div>-->
+<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start">
+    <!--<button class="mrgn-all-xs" md-raised-button md-button-sm color="primary" (click)="ToggleFilterSection()">Filters</button>-->
+    <div fxFlex="100">
+        
+
+        
+        <!--<ngx-datatable #table class='material' [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]='rows'> </ngx-datatable>-->
+
+        <div *ngIf="isListReady && userListArray?.length!=0">
+		
+		
+
+            <div class="gene-card-content">
+			
+			
+                <div class="table-responsive" >
+                    <table class="table table-hover table-middle th-fw-light mb-0">
+                        <thead>
+                            <tr>
+                                <th (click)="sort('username')">Username
+                                    <span class="glyphicon sort-icon" *ngIf="key =='username'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                             
+                                <th (click)="sort('name')">Name
+                                    <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+
+                                <th (click)="sort('gender')">Gender
+                                    <span class="glyphicon sort-icon" *ngIf="key =='gender'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                               
+                                <th >Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="isListReady">
+                            <tr *ngFor="let user of userListArray" >
+
+
+                                <td>{{user.username}}</td>
+                                <td>{{user.name}}</td>
+                                <td>{{user.gender==1?"Male":"Female"}}</td>
+                             
+                                <td>
+                                    <!--<a class="NonnavigateAnchor" title="Edit" *ngIf="!admin.IsMe" (click) ="edit(admin.adminid)"><i class="fa fa-edit mr-1"></i></a>
+                                <a class="NonnavigateAnchor" title="Delete" (click) ="ngdelete(admin.adminId)"><i class="fa fa-times text-danger"></i></a>-->
+                                    <button class="mrgn-all-xs" md-raised-button md-button-sm color="accent" (click)="ChooseMe(user.userid)">Choose</button>
+									<button class="mrgn-all-xs" md-raised-button md-button-sm color="accent" (click)="RemoveMe(user.userid)">Remove</button>
+                                   
+                                </td>
+                            </tr>
+                            <!--<tr ng-repeat="list of adminListArray" >
+
+                            <td><a href="javascript:;"><i class="fa fa-edit mr-1"></i></a><a href="javascript:;"><i class="fa fa-times text-danger"></i></a></td>
+                        </tr>-->
+
+
+                        </tbody>
+                       
+                           
+                       
+                      
+                        
+                    </table>
+                </div>
+            </div>
+			</div>
+     <div style="text-align:center;"class="box-inset pad-all-md mrgn-b-md" *ngIf="ShowMsg">
+
+           <i><span style="color:Blue">Removed Successfully !!!</span>
+							   </i>
+                             
+
+</div>
+        <div style="text-align:center;"class="box-inset pad-all-md mrgn-b-md" *ngIf="ShowDetails">
+
+           <i>You have selected  :<span *ngFor="let user of templist" >
+
+
+                               
+                             <span style="color:red">  {{user.name}} </span>(<b>
+                               {{user.gender==1?"Male":"Female"}})
+							   </b>
+							   </span>
+							   </i>
+                             
+
+</div>
+ <div style="text-align:center;"class="box-inset pad-all-md mrgn-b-md" *ngIf="userListArray?.length==0">
+
+           <i>      
+                             <span style="color:red">  No Records Left !!! </span>
+							   </i>
+                             
+
+</div>
+<marquee style="font-size:40px;color:Green;margin-top:100px">Welcome to Angular 2 . This is a simple demo.</marquee>
+</div>
+</div>
